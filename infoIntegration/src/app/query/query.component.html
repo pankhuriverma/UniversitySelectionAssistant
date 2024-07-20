@@ -1,0 +1,113 @@
+<div class="card">
+    <!-- <h5>Please select the search criteria:</h5> -->
+    <div class="card">
+        <div class="row">
+            <div class="col-md-6">
+                <p-dropdown [options]="criteria" optionLabel="name" [showClear]="true" placeholder="Select a Criteria"
+                (onChange)="onCriteriaChange($event)"></p-dropdown>
+                <!-- <br><br> -->
+                <div class="row" *ngIf="selectedCriteria.code === 'W'" style="margin-top: 10px;margin-bottom: 10px;">
+                    <p-dropdown [options]="region" optionLabel="name" (onChange)="onRegionChange($event)" [showClear]="true" 
+                    placeholder="Select a Region"></p-dropdown>
+                </div>
+                <p-dropdown [options]="regionList" optionLabel="city" *ngIf="selectedRegion && selectedRegion.code === 'C'"
+                placeholder="Select a City" [filter]="true" filterBy="city" [(ngModel)]="selectedCity"></p-dropdown>
+                <p-dropdown [options]="regionList" optionLabel="state" *ngIf="selectedRegion && selectedRegion.code === 'S'"
+                placeholder="Select a State" [filter]="true" filterBy="state" [(ngModel)]="selectedState"></p-dropdown>
+                <p-dropdown [options]="regionList" optionLabel="country" *ngIf="selectedRegion && selectedRegion.code === 'CT'"
+                placeholder="Select a Country" [filter]="true" filterBy="country" [(ngModel)]="selectedCountry"></p-dropdown>
+            </div>
+            <div class="col-md-6">
+                <div class="row" *ngIf="selectedCriteria.code === 'W'"  style="margin-top: 10px;margin-bottom: 10px;">
+                    Minimum Temparature(℃):<br>
+                    <p-inputNumber [(ngModel)]="min_temp" prefix="↑ " suffix="℃" :min="-20" :max="40" name="min_temp"
+                    placeholder="↑ -20 (℃)"></p-inputNumber><br>
+                    Maximum Temparature(℃):<br>
+                    <p-inputNumber [(ngModel)]="max_temp" prefix="↓ " suffix="℃" :min="-20" :max="60" name="max_temp"
+                    placeholder="↓ 60 (℃)"></p-inputNumber>
+                </div>
+            </div>
+        </div><br>
+        <p-button label="Search" (click)="Search()"></p-button>
+    </div>
+    <div class="card">
+        <p-table [value]="pollutionData" [scrollable]="true"  scrollHeight="500px" scrollDirection="both" 
+        *ngIf="selectedCriteria.code === 'P'" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="ranking">Ranking<p-sortIcon field="ranking"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="institution">Institution Name<p-sortIcon field="institution"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="city">City<p-sortIcon field="city"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="state">State<p-sortIcon field="state"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="country">Country<p-sortIcon field="country"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="aqi">Air Quality Index<p-sortIcon field="aqi"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="co">CO<p-sortIcon field="co"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="no2">NO2<p-sortIcon field="no2"></p-sortIcon>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-uni>
+                <tr>
+                    <td>{{uni.ranking}}</td>
+                    <td>{{uni.institution}}</td>
+                    <td>{{uni.city}}</td>
+                    <td>{{uni.state}}</td>
+                    <td>{{uni.country}}</td>
+                    <td>{{uni.aqi}}</td>
+                    <td>{{uni.co}}</td>
+                    <td>{{uni.no2}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-table [value]="weatherData" [scrollable]="true"  scrollHeight="500px" scrollDirection="both" 
+        *ngIf="selectedCriteria.code === 'W'" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="ranking">Ranking<p-sortIcon field="ranking"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="institution">Institution Name<p-sortIcon field="institution"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="city">City<p-sortIcon field="city"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="state">State<p-sortIcon field="state"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="country">Country<p-sortIcon field="country"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="min_temp">Minimum Temperature<p-sortIcon field="min_temp"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="max_temp">Maximum Temperature<p-sortIcon field="max_temp"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="wind">Wind<p-sortIcon field="wind"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="pressure">Pressure<p-sortIcon field="pressure"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="humidity">Humidity<p-sortIcon field="humidity"></p-sortIcon>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-uni>
+                <tr>
+                    <td>{{uni.ranking}}</td>
+                    <td>{{uni.institution}}</td>
+                    <td>{{uni.city}}</td>
+                    <td>{{uni.state}}</td>
+                    <td>{{uni.country}}</td>
+                    <td>{{uni.min_temp}}</td>
+                    <td>{{uni.max_temp}}</td>
+                    <td>{{uni.wind}}</td>
+                    <td>{{uni.pressure}}</td>
+                    <td>{{uni.humidity}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

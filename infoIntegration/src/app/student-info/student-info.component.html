@@ -1,0 +1,28 @@
+<div class="card">
+    <h5>Single Column</h5>
+    <p-table [value]="students">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="id">S.No<p-sortIcon field="price"></p-sortIcon>
+                </th>
+                <th pSortableColumn="name">Name <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="city">City <p-sortIcon field="name"></p-sortIcon>
+                </th>
+                <th pSortableColumn="country">Country <p-sortIcon field="category"></p-sortIcon>
+                </th>
+                <th pSortableColumn="pref_subject"> Preferred Subject <p-sortIcon field="quantity"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-student>
+            <tr>
+                <td>{{student.id}}</td>
+                <td>{{student.name}}</td>
+                <td>{{student.city}}</td>
+                <td>{{student.country}}</td>
+                <td>{{student.pref_subject}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

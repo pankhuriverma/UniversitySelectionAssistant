@@ -1,0 +1,43 @@
+<div class="card">
+    <p-table [value]="unis" [scrollable]="true"  scrollHeight="500px" scrollDirection="both" [paginator]="true" [rows]="10" 
+    [showCurrentPageReport]="true" responsiveLayout="scroll" [resizableColumns]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+    responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pResizableColumn pSortableColumn="ranking" >Ranking<p-sortIcon field="ranking"></p-sortIcon>
+                </th>
+                <th pResizableColumn pSortableColumn="title">Name<p-sortIcon field="title"></p-sortIcon>
+                </th>
+                <th pSortableColumn="country" pResizableColumn>Country<p-sortIcon field="country"></p-sortIcon>
+                </th>
+                <th pSortableColumn="size" pResizableColumn>Size<p-sortIcon field="size"></p-sortIcon>
+                </th>
+                <th pSortableColumn="status" pResizableColumn>Status<p-sortIcon field="status"></p-sortIcon>
+                </th>
+                <th pSortableColumn="num_stu" pResizableColumn>Number of Students<p-sortIcon field="num_stu"></p-sortIcon>
+                </th>
+                <th pResizableColumn>Student Staff Ratio</th>
+                <th pSortableColumn="intl_stu_per" pResizableColumn>International Students (%)<p-sortIcon field="intl_stu_per"></p-sortIcon>
+                </th>
+                <th pResizableColumn>Gender Ratio</th>
+                <th pSortableColumn="overall_score" pResizableColumn>Overall Score<p-sortIcon field="overall_score"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-uni>
+            <tr>
+                <td>{{uni.ranking}}</td>
+                <td>{{uni.institution}}</td>
+                <td>{{uni.country}}</td>
+                <td>{{uni.size}}</td>
+                <td>{{uni.status}}</td>
+                <td>{{uni.num_stu}}</td>
+                <td>{{uni.stu_staff_rt}}</td>
+                <td>{{uni.intl_stu_per}}</td>
+                <td>{{uni.gender_rt}}</td>
+                <td>{{uni.overall_score}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

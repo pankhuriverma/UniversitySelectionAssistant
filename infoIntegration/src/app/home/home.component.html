@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="navBar">
+        <div class="col-md-1"></div>
+        <div class="col-md-3" style="color:white">
+            <h1>Information Integration</h1>
+        </div>
+        <div class="col-md-7"></div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+<br><br>
+<div class="row">
+    <p-tabMenu [model]="menu" [activeItem]="menu[0]"></p-tabMenu>
+    <br>
+    <div *ngIf='this.tabCount === 1'>
+        <app-student-info></app-student-info>
+    </div>
+    <div *ngIf='this.tabCount === 2'>
+        <app-query></app-query>
+    </div>
+    <div *ngIf='this.tabCount === 3'>
+        <app-university-data></app-university-data>
+    </div>
+    <br>
+</div>

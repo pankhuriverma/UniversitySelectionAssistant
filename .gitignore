@@ -1,0 +1,53 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+infoIntegration/dist
+infoIntegration/tmp
+infoIntegration/out-tsc
+# Only exists if Bazel was run
+infoIntegration/bazel-out
+
+# dependencies
+infoIntegration/node_modules
+
+# # profiling files
+# chrome-profiler-events*.json
+# speed-measure-plugin*.json
+
+# IDEs and editors
+# infoIntegration/.idea
+# infoIntegration/.project
+# infoIntegration/.classpath
+# infoIntegration/.c9/
+# infoIntegration/*.launch
+# infoIntegration/.settings/
+# infoIntegration/*.sublime-workspace
+
+# IDE - VSCode
+# .vscode/*
+# !.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+# .history/*
+
+# # misc
+# /.sass-cache
+# /connect.lock
+# /coverage
+# /libpeerconnection.log
+# npm-debug.log
+# yarn-error.log
+# testem.log
+# /typings
+
+# # System Files
+# .DS_Store
+# Thumbs.db
+
+# /python files
+
+Python_Backend/evn
+Python_Backend/.vscode/*
+
+
