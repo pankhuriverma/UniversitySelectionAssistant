@@ -13,5 +13,5 @@ install flask, mysql-connector
 
 change mysql driver details as per your dbms account and db name.
 
-run mail.py by the command: "py main.py"
+run main.py by the command: "py main.py"
 it'll run on port 5000 by default which the GUI will be using to call the API.
